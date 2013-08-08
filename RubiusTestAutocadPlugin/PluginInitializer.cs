@@ -18,7 +18,7 @@ namespace RubiusTestAutocadPlugin
         public void Start()
         {
             document = Application.DocumentManager.MdiActiveDocument;
-            document.Editor.WriteMessage("Привет из Autocad плагина");
+            document.Editor.WriteMessage("My first Autocad plugin started");
             //GetDbEntities(document);
             EntitiesEditor form = new EntitiesEditor(document);
             form.Show();
@@ -28,7 +28,7 @@ namespace RubiusTestAutocadPlugin
         public void Initialize()
         {
             var editor = Application.DocumentManager.MdiActiveDocument.Editor;
-            editor.WriteMessage("Инициализация плагина.." + Environment.NewLine);
+            editor.WriteMessage("Plug-in initialization" + Environment.NewLine);
         }
 
         public void Terminate()

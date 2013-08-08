@@ -6,10 +6,62 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <StackPanel>
-            <Button Name="reloadBtn" Click="reloadBtn_Click">reload</Button>
-            <TreeView Name="treeView">
-            </TreeView>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+            <Button Grid.Row="0" Name="reloadBtn" Click="reloadBtn_Click" Width="Auto">reload</Button>
+        <Label Grid.Row="1" Grid.Column="0">Lines: </Label>
+        <ComboBox Grid.Row="1" Grid.Column="1" Name="linesCmbx">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <!--<CheckBox IsChecked="{Binding Deleteable, Mode=TwoWay}" />-->
+                        <Label Content="{Binding ObjectName}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label Grid.Row="2" Grid.Column="0">Circles: </Label>
+        <ComboBox  Grid.Row="2" Grid.Column="1" Name="circlesCmbx">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <!--<CheckBox IsChecked="{Binding Deleteable, Mode=TwoWay}" />-->
+                        <Label Content="{Binding ObjectName}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label Grid.Row="3" Grid.Column="0">Points: </Label>
+        <ComboBox  Grid.Row="3" Grid.Column="1" Name="pointsCmbx">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <!--<CheckBox IsChecked="{Binding Deleteable, Mode=TwoWay}" />-->
+                        <Label Content="{Binding ObjectName}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label Grid.Row="4" Grid.Column="0">Layers:</Label>
+        <ComboBox Grid.Row="4" Grid.Column="1" Name="layersCmbx">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <!--<CheckBox IsChecked="{Binding Deleteable, Mode=TwoWay}" />-->
+                        <Label Content="{Binding ObjectName}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
     </Grid>
 </Window>
