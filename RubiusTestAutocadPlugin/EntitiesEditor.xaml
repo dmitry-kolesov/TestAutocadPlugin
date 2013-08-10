@@ -3,14 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:local="clr-namespace:RubiusTestAutocadPlugin"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -19,49 +17,25 @@
         </Grid.ColumnDefinitions>
         
             <Button Grid.Row="0" Name="reloadBtn" Click="reloadBtn_Click" Width="Auto">reload</Button>
-        <Label Grid.Row="1" Grid.Column="0">Lines: </Label>
-        <ComboBox Grid.Row="1" Grid.Column="1" Name="linesCmbx">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <!--<CheckBox IsChecked="{Binding Deleteable, Mode=TwoWay}" />-->
-                        <Label Content="{Binding ObjectName}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <Label Grid.Row="2" Grid.Column="0">Circles: </Label>
-        <ComboBox  Grid.Row="2" Grid.Column="1" Name="circlesCmbx">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <!--<CheckBox IsChecked="{Binding Deleteable, Mode=TwoWay}" />-->
-                        <Label Content="{Binding ObjectName}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <Label Grid.Row="3" Grid.Column="0">Points: </Label>
-        <ComboBox  Grid.Row="3" Grid.Column="1" Name="pointsCmbx">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <!--<CheckBox IsChecked="{Binding Deleteable, Mode=TwoWay}" />-->
-                        <Label Content="{Binding ObjectName}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <Label Grid.Row="4" Grid.Column="0">Layers:</Label>
-        <ComboBox Grid.Row="4" Grid.Column="1" Name="layersCmbx">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <!--<CheckBox IsChecked="{Binding Deleteable, Mode=TwoWay}" />-->
-                        <Label Content="{Binding ObjectName}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+        
+
+        <ListView Grid.Row="1" Grid.Column="0"  Name="lvEntities" VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
+                </GridView>
+            </ListView.View>
+
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+        <local:PropertyEditorFactory Grid.Row="1" Grid.Column="1" x:Name="propertyEditor" />
     </Grid>
 </Window>

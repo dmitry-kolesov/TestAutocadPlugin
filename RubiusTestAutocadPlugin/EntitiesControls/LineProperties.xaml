@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="RubiusTestAutocadPlugin.LineProperties"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" FontSize="16" VerticalContentAlignment="Center">точка 1 координаты:</Label>
+        <Label Grid.Row="1" Grid.Column="0" FontSize="16" VerticalContentAlignment="Center">точка 2 координаты:</Label>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+            <TextBox  Name="point1XTbx" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Point1.X}" VerticalAlignment="Center"></TextBox>
+            <TextBox Name="point1YTbx" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Point1.Y}" VerticalAlignment="Center"></TextBox>
+            <TextBox Name="point1ZTbx" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Point1.Z}" VerticalAlignment="Center"></TextBox>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+            <TextBox  Name="point2XTbx" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Point2.X}" VerticalAlignment="Center"></TextBox>
+            <TextBox Name="point2YTbx" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Point2.Y}" VerticalAlignment="Center"></TextBox>
+            <TextBox Name="point2ZTbx" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Point2.Z}" VerticalAlignment="Center"></TextBox>
+        </StackPanel>
+            
+       
+    </Grid>
+</UserControl>

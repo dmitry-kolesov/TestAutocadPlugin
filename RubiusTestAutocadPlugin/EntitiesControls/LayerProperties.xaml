@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="RubiusTestAutocadPlugin.LayerProperties"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" FontSize="16" VerticalContentAlignment="Center">цвет:</Label>
+        <Label Grid.Row="1" Grid.Column="0" FontSize="16" VerticalContentAlignment="Center">название:</Label>
+        <xctk:ColorPicker Grid.Row="0" Grid.Column="1" Name="colorPckr" FontSize="16" VerticalContentAlignment="Center" MinWidth="50" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" SelectedColor="{Binding Color}" VerticalAlignment="Center"></xctk:ColorPicker>
+          
+        <TextBox Grid.Row="1" Grid.Column="1" Name="nameTbx" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Entity.Name}" VerticalAlignment="Center"/>
+        <CheckBox Grid.Row="2" Grid.Column="1" Name="visibilityChkbx" Content="видимость" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding Entity.LayerOn}" VerticalAlignment="Center" ></CheckBox>
+    </Grid>
+</UserControl>

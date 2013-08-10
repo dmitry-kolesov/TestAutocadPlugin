@@ -31,14 +31,14 @@ namespace RubiusTestAutocadPlugin
         Document document;
 
         List<DwgEntity> entities = new List<DwgEntity>();
-
+        
         Dictionary<string, List<AcadPoint>> pointsDict = new Dictionary<string, List<AcadPoint>>();
         Dictionary<string, List<AcadLine>> linesDict = new Dictionary<string, List<AcadLine>>();
         Dictionary<string, List<AcadCircle>> circlesDict = new Dictionary<string, List<AcadCircle>>();
 
-        List<AcadPoint> points = new List<AcadPoint>();
-        List<AcadLine> lines = new List<AcadLine>();
-        List<AcadCircle> circles = new List<AcadCircle>();
+         List<AcadPoint> points = new List<AcadPoint>();
+         List<AcadLine> lines = new List<AcadLine>();
+         List<AcadCircle> circles = new List<AcadCircle>();
 
         List<AcadLayer> layers = new List<AcadLayer>();
 
@@ -46,16 +46,6 @@ namespace RubiusTestAutocadPlugin
         {
             InitializeComponent();
             document = _document;
-            lvEntities.SelectionChanged += lvEntities_SelectionChanged;
-        }
-
-        void lvEntities_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.AddedItems.Count > 0)
-            {
-                var selected = e.AddedItems[0] as DwgEntity;
-                propertyEditor.Init(selected);
-            }
         }
 
         private void reloadBtn_Click(object sender, RoutedEventArgs e)
@@ -63,28 +53,23 @@ namespace RubiusTestAutocadPlugin
             //var dict = GetDbEntities(document);
             GetEntities();
 
-            //pointsCmbx.ItemsSource = points;
-            //linesCmbx.ItemsSource = lines;
-            //circlesCmbx.ItemsSource = circles;
-            //layersCmbx.ItemsSource = layers;
+            pointsCmbx.ItemsSource = points;
+            linesCmbx.ItemsSource = lines;
+            circlesCmbx.ItemsSource = circles;
+            layersCmbx.ItemsSource = layers;
 
             lvEntities.ItemsSource = entities;
-
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvEntities.ItemsSource);
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("LayerName");
-            view.GroupDescriptions.Add(groupDescription);
             //treeView.ItemsSource = dict;
             //if (dict.Count > 0)
             {
                 //var el = dict.FirstOrDefault();
                 //MessageBox.Show(el.Key + "__" + el.Value);
-
+                
             }
         }
 
         public void GetEntities()
         {
-            entities.Clear();
             Document dwg = Application.DocumentManager.MdiActiveDocument;
 
             AcadDocument acdDoc = (AcadDocument)dwg.AcadDocument;
@@ -135,7 +120,8 @@ namespace RubiusTestAutocadPlugin
             {
                 var layer = layerEnt as AcadLayer;
                 layers.Add(layer);
-                entities.Add(new DwgEntity(layer, EntityType.Layer));
+                if (layerEnt is AcadEntity) 
+                    entities.Add(new DwgEntity(layerEnt as AcadEntity, EntityType.Layer));
             }
         }
 

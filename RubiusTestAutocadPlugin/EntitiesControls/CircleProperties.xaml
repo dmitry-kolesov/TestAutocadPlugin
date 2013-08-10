@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="RubiusTestAutocadPlugin.CircleProperties"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" FontSize="16" VerticalContentAlignment="Center">координаты центра:</Label>
+        <Label Grid.Row="1" Grid.Column="0" FontSize="16" VerticalContentAlignment="Center">радиус:</Label>
+        <Label Grid.Row="2" Grid.Column="0" FontSize="16" VerticalContentAlignment="Center">высота:</Label>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" >
+            <TextBox FontSize="16" VerticalContentAlignment="Center" MinWidth="50" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Text="{Binding Center.X}" VerticalAlignment="Center"></TextBox>
+            <TextBox FontSize="16" VerticalContentAlignment="Center" MinWidth="50" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Text="{Binding Center.Y}" VerticalAlignment="Center"></TextBox>
+        </StackPanel>
+        <TextBox Grid.Row="1" Grid.Column="1" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Entity.Radius}" VerticalAlignment="Center"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Center.Z}" VerticalAlignment="Center"></TextBox>
+    </Grid>
+</UserControl>
