@@ -109,6 +109,7 @@
     <Compile Include="EntitiesControls\PropertyEditorFactory.xaml.cs">
       <DependentUpon>PropertyEditorFactory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DoubleToStringValueConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="EntitiesControls\CircleProperties.xaml">

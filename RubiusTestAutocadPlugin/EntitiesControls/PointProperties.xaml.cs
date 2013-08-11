@@ -23,7 +23,11 @@ namespace RubiusTestAutocadPlugin
     {
         public AcadPoint Entity { get; set; }
         Point3D point;
-        public Point3D Point { get { return point; } }
+        public Point3D Point { get { return point; } set { point = value; } }
+
+        public double PointX { get { return point.X; } set { point.X = value; } }
+        public double PointY { get { return point.Y; } set { point.Y = value; } }
+        public double PointZ { get { return point.Z; } set { point.Z = value; } }
 
         public PointProperties()
         {
@@ -37,6 +41,11 @@ namespace RubiusTestAutocadPlugin
             this.point = new Point3D(coord[0], coord[1], coord[2]);
 
             DataContext = this;
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Entity.Coordinates = new double[] { point.X, point.Y, point.Z };
         }
     }
 }

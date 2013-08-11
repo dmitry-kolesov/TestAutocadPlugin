@@ -6,8 +6,9 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="300">
-    <Grid>
+    <Grid  VerticalAlignment="Top">
         <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -18,9 +19,10 @@
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" FontSize="16" VerticalContentAlignment="Center">цвет:</Label>
         <Label Grid.Row="1" Grid.Column="0" FontSize="16" VerticalContentAlignment="Center">название:</Label>
-        <xctk:ColorPicker Grid.Row="0" Grid.Column="1" Name="colorPckr" FontSize="16" VerticalContentAlignment="Center" MinWidth="50" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" SelectedColor="{Binding Color}" VerticalAlignment="Center"></xctk:ColorPicker>
+        <xctk:ColorPicker Grid.Row="0" Grid.Column="1" Name="colorPckr" DisplayColorAndName="True" FontSize="16" VerticalContentAlignment="Center" MinWidth="50" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" SelectedColor="{Binding Color}" VerticalAlignment="Center"></xctk:ColorPicker>
           
-        <TextBox Grid.Row="1" Grid.Column="1" Name="nameTbx" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Entity.Name}" VerticalAlignment="Center"/>
-        <CheckBox Grid.Row="2" Grid.Column="1" Name="visibilityChkbx" Content="видимость" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding Entity.LayerOn}" VerticalAlignment="Center" ></CheckBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="nameTbx" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Entity.Name, Mode=OneWay}" VerticalAlignment="Center"/>
+        <CheckBox Grid.Row="2" Grid.Column="1" Name="visibilityChkbx" Content="видимость" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding Entity.LayerOn, Mode=OneWay}" VerticalAlignment="Center" ></CheckBox>
+        <Button Grid.Row="3" Grid.Column="1" Click="saveBtn_Click" Name="saveBtn" HorizontalAlignment="Center" Width="60">Save</Button>
     </Grid>
 </UserControl>

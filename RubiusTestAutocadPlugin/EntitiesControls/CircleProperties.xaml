@@ -3,10 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:local="clr-namespace:RubiusTestAutocadPlugin"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="300">
-    <Grid>
+
+    <UserControl.Resources>
+        <local:DoubleToStringValueConverter x:Key="strDblConverter"/>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Top">
         <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -19,10 +26,11 @@
         <Label Grid.Row="1" Grid.Column="0" FontSize="16" VerticalContentAlignment="Center">радиус:</Label>
         <Label Grid.Row="2" Grid.Column="0" FontSize="16" VerticalContentAlignment="Center">высота:</Label>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" >
-            <TextBox FontSize="16" VerticalContentAlignment="Center" MinWidth="50" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Text="{Binding Center.X}" VerticalAlignment="Center"></TextBox>
-            <TextBox FontSize="16" VerticalContentAlignment="Center" MinWidth="50" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Text="{Binding Center.Y}" VerticalAlignment="Center"></TextBox>
+            <xctk:SingleUpDown FontSize="16" Name="centerXTbx" VerticalContentAlignment="Center" MinWidth="50" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Text="{Binding CenterX, Converter={StaticResource strDblConverter}}" VerticalAlignment="Center"></xctk:SingleUpDown>
+            <xctk:SingleUpDown FontSize="16" Name="centerYTbx" VerticalContentAlignment="Center" MinWidth="50" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Text="{Binding CenterY, Converter={StaticResource strDblConverter}}" VerticalAlignment="Center"></xctk:SingleUpDown>
         </StackPanel>
-        <TextBox Grid.Row="1" Grid.Column="1" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Entity.Radius}" VerticalAlignment="Center"></TextBox>
-        <TextBox Grid.Row="2" Grid.Column="1" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Center.Z}" VerticalAlignment="Center"></TextBox>
+        <xctk:SingleUpDown Grid.Row="1" Name="radiusTbx"  Grid.Column="1" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding Entity.Radius, Mode=OneWay}" VerticalAlignment="Center"></xctk:SingleUpDown>
+        <xctk:SingleUpDown Grid.Row="2" Grid.Column="1" Name="centerZTbx" FontSize="16" MinWidth="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="{Binding CenterZ, Converter={StaticResource strDblConverter}}" VerticalAlignment="Center"></xctk:SingleUpDown>
+        <Button Grid.Row="3" Grid.Column="1" Click="saveBtn_Click" Name="saveBtn" HorizontalAlignment="Center" Width="60">Save</Button>
     </Grid>
 </UserControl>

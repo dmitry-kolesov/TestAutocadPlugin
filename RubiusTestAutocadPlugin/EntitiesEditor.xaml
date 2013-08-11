@@ -16,7 +16,7 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
-            <Button Grid.Row="0" Name="reloadBtn" Click="reloadBtn_Click" Width="Auto">reload</Button>
+            <!--<Button Grid.Row="0" Name="reloadBtn" Click="reloadBtn_Click" Width="Auto">reload</Button>-->
         
 
         <ListView Grid.Row="1" Grid.Column="0"  Name="lvEntities" VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible">

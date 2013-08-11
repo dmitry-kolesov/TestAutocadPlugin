@@ -23,10 +23,12 @@ namespace RubiusTestAutocadPlugin
     public partial class CircleProperties : UserControl
     {
         public AcadCircle Entity { get; set; }
-        Point3D point1;
-        public Point3D Center { get { return point1; } }
-        Point3D point2;
-        public Point3D Point2 { get { return point2; } }
+        Point3D center;
+        public Point3D Center { get { return center; } }
+
+        public double CenterX { get { return center.X; } set { center.X = value; } }
+        public double CenterY { get { return center.Y; } set { center.Y = value; } }
+        public double CenterZ { get { return center.Z; } set { center.Z = value; } }
 
         public CircleProperties()
         {
@@ -38,9 +40,20 @@ namespace RubiusTestAutocadPlugin
         {
             Entity = entity;
             var coord = Entity.Center as double[];
-            this.point1 = new Point3D(coord[0], coord[1], coord[2]);
+            this.center = new Point3D(coord[0], coord[1], coord[2]);
 
             DataContext = this;
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            Entity.Center = new double[] { center.X, center.Y, center.Z };
+            var radius = 0.0;
+            if (double.TryParse(radiusTbx.Text, out radius))
+            {
+                Entity.Radius = radius;
+            }
         }
     }
 }

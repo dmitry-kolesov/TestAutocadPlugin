@@ -28,6 +28,14 @@ namespace RubiusTestAutocadPlugin
         Point3D point2;
         public Point3D Point2 { get { return point2; } set { point2 = value; } }
 
+        public double Point1X { get { return point1.X; } set { point1.X = value; } }
+        public double Point1Y { get { return point1.Y; } set { point1.Y = value; } }
+        public double Point1Z { get { return point1.Z; } set { point1.Z = value; } }
+
+        public double Point2X { get { return point2.X; } set { point2.X = value; } }
+        public double Point2Y { get { return point2.Y; } set { point2.Y = value; } }
+        public double Point2Z { get { return point2.Z; } set { point2.Z = value; } }
+
         public LineProperties()
         {
             InitializeComponent();
@@ -45,5 +53,26 @@ namespace RubiusTestAutocadPlugin
 
             DataContext = this;
         }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Entity.StartPoint = new double[] { point1.X, point1.Y, point1.Z};
+            Entity.EndPoint = new double[] { point2.X, point2.Y, point2.Z };
+        }
+
+        //private void pointTbx_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    double res;
+        //    if (double.TryParse((e.Source as TextBox).Text, out res))
+        //        e.Handled = true;
+        //    else
+        //        e.Source = e.OriginalSource;
+        //    e.Handled = false;
+        //}
+
+        //private void point1XTbx_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
+        //{
+        //    ;
+        //}
     }
 }

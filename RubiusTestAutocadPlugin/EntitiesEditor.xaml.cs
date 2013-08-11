@@ -32,21 +32,13 @@ namespace RubiusTestAutocadPlugin
 
         List<DwgEntity> entities = new List<DwgEntity>();
 
-        Dictionary<string, List<AcadPoint>> pointsDict = new Dictionary<string, List<AcadPoint>>();
-        Dictionary<string, List<AcadLine>> linesDict = new Dictionary<string, List<AcadLine>>();
-        Dictionary<string, List<AcadCircle>> circlesDict = new Dictionary<string, List<AcadCircle>>();
-
-        List<AcadPoint> points = new List<AcadPoint>();
-        List<AcadLine> lines = new List<AcadLine>();
-        List<AcadCircle> circles = new List<AcadCircle>();
-
-        List<AcadLayer> layers = new List<AcadLayer>();
-
         public EntitiesEditor(Document _document)
         {
             InitializeComponent();
             document = _document;
             lvEntities.SelectionChanged += lvEntities_SelectionChanged;
+
+            InitData();
         }
 
         void lvEntities_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -58,28 +50,15 @@ namespace RubiusTestAutocadPlugin
             }
         }
 
-        private void reloadBtn_Click(object sender, RoutedEventArgs e)
+        private void InitData()
         {
-            //var dict = GetDbEntities(document);
             GetEntities();
-
-            //pointsCmbx.ItemsSource = points;
-            //linesCmbx.ItemsSource = lines;
-            //circlesCmbx.ItemsSource = circles;
-            //layersCmbx.ItemsSource = layers;
 
             lvEntities.ItemsSource = entities;
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvEntities.ItemsSource);
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("LayerName");
             view.GroupDescriptions.Add(groupDescription);
-            //treeView.ItemsSource = dict;
-            //if (dict.Count > 0)
-            {
-                //var el = dict.FirstOrDefault();
-                //MessageBox.Show(el.Key + "__" + el.Value);
-
-            }
         }
 
         public void GetEntities()
@@ -93,73 +72,24 @@ namespace RubiusTestAutocadPlugin
             {
                 if (ent is AcadPoint)
                 {
-                    var pt = ent as AcadPoint;
-                    //var layer = pt.Layer;
-                    //if (!points.Keys.Contains(layer))
-                    //    points.Add(layer, new List<AcadPoint>());
-                    //points[layer].Add(pt);
-                    points.Add(pt);
                     entities.Add(new DwgEntity(ent, EntityType.Point));
                 }
                 else if (ent is AcadCircle)
                 {
-                    var circle = ent as AcadCircle;
-                    //var layer = circle.Layer;
-                    //if (!circles.Keys.Contains(layer))
-                    //    circles.Add(layer, new List<AcadCircle>());
-                    //circles[layer].Add(circle);
-                    circles.Add(circle);
                     entities.Add(new DwgEntity(ent, EntityType.Circle));
                 }
                 else if (ent is AcadLine)
                 {
-                    var line = ent as AcadLine;
-                    //var layer = line.Layer;
-                    //if (!lines.Keys.Contains(layer))
-                    //    lines.Add(layer, new List<AcadLine>());
-                    //lines[layer].Add(line);
-                    lines.Add(line);
                     entities.Add(new DwgEntity(ent, EntityType.Line));
                 }
-                //else if (ent is Autodesk.AutoCAD.Interop.Common.AcadLayer)
-                //{
-                //    var layer = ent as Autodesk.AutoCAD.Interop.Common.AcadLayer;
-                //}
-                //else if (ent is Autodesk.AutoCAD.Interop.Common.AcadLayers)
-                //{
-                //    Autodesk.AutoCAD.Interop.Common.AcadLayers layers = ent as Autodesk.AutoCAD.Interop.Common.AcadLayers;
-                //}
             }
 
             foreach (var layerEnt in acdDoc.Layers) // unfortunataly cant use linq because of acdDoc.Layers not allowed (not enumerable)
             {
                 var layer = layerEnt as AcadLayer;
-                layers.Add(layer);
                 entities.Add(new DwgEntity(layer, EntityType.Layer));
             }
         }
 
-        //private Dictionary<string, List<ObjectId>> GetDbEntities(Document _document)
-        //{
-        //    Database db = _document.Database;
-        //    Dictionary<string, List<ObjectId>> dict = new Dictionary<string, List<ObjectId>>();
-        //    using (Transaction t = db.TransactionManager.StartTransaction())
-        //    {
-        //        for (long i = db.BlockTableId.Handle.Value; i < db.Handseed.Value; i++)
-        //        {
-        //            ObjectId id = ObjectId.Null;
-        //            Handle h = new Handle(i); 
-        //            if (db.TryGetObjectId(h, out id))
-        //            {
-        //                string type = id.ObjectClass.Name;
-        //                if (!dict.Keys.Contains(type))
-        //                    dict.Add(type, new List<ObjectId>());
-        //                dict[type].Add(id);
-        //            }
-        //        }
-        //        t.Commit();
-        //    }
-        //    return dict;
-        //}
     }
 }
